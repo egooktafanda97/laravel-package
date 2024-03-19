@@ -1,16 +1,16 @@
 <?php
 
-namespace TaliumAttributes\Collection\Handler;
+namespace TaliumAttributes\Handler;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
-use TaliumAttributes\Collection\Services\ReflectionMeta;
-use TaliumAttributes\helper\FileHelpers;
+use TaliumAttributes\helper\FileHelpers as HelperFileHelpers;
+use TaliumAttributes\Services\ReflectionMeta;
 
 class RouterHandler
 {
-    use FileHelpers;
+    use HelperFileHelpers;
     public function __construct()
     {
     }
@@ -114,18 +114,21 @@ class RouterHandler
     public static function route()
     {
         $controllerFiles = self::findControllers();
+
         try {
             if (!empty(Config::get('RouterAttributeNameSpace')) && is_array(Config::get('RouterAttributeNameSpace')))
                 $controllerFiles = Config::get('RouterAttributeNameSpace');
             else
                 $controllerFiles = self::findControllers();
-        } catch (\Throwable) {
+        } catch (\Throwable $e) {
+            throw new \Exception($e->getMessage());
         }
         $rootPath = self::app_path();
         $controllerFiles = array_map(function ($path) use ($rootPath) {
             return str_replace($rootPath, '', $path);
         }, $controllerFiles);
         $routes_list = [];
+
         foreach ($controllerFiles as $key => $items) {
             foreach ($items as $item) {
                 $routes = ReflectionMeta::HirarchyAttributes($item);
@@ -137,7 +140,9 @@ class RouterHandler
                 }
             }
         }
+
         foreach ($routes_list as $router) {
+
             try {
                 Route::group($router['guard'] === "api" ? ["api"] : [], function () use ($router) {
                     Route::group($router['attribute_group'] ?? [], function () use ($router) {
@@ -149,8 +154,11 @@ class RouterHandler
                                 });
                             }
                         } else {
-                            Route::{strtolower($router['method'])}($router['url'], $router['controller'])
-                                ->name($router['name'] ?? null);
+
+                            Route::group($router['method_group'] ?? [], function () use ($router) {
+                                Route::{strtolower($router['method'])}($router['url'], $router['controller'])
+                                    ->name($router['name'] ?? null);
+                            });
                         }
                     });
                 });
@@ -163,6 +171,7 @@ class RouterHandler
     public static function findControllers()
     {
         $data = ReflectionMeta::findPhpFilesWithClass(self::app_path());
+
         $namespaces = [];
         foreach ($data as $classData) {
             $namespaces[$classData['controller']][] = $classData['namespace'];

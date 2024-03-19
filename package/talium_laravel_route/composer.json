@@ -10,8 +10,7 @@
   }],
   "autoload": {
     "psr-4": {
-      "TaliumAttributes\\": "src/",
-      "TaliumAttributes\\Collection\\": "src/attributes/"
+      "TaliumAttributes\\": "src/"
     }
   },
   "autoload-dev": {

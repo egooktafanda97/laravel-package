@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use TaliumAttributes\Collection\Handler\RouterHandler;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -39,7 +38,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            RouterHandler::route();
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)

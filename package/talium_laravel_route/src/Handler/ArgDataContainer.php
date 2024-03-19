@@ -1,6 +1,6 @@
 <?php
 
-namespace TaliumAttributes\Collection\Handler;
+namespace TaliumAttributes\Handler;
 
 class ArgDataContainer
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace TaliumAttributes\Collection\Contrroller;
+namespace TaliumAttributes\Collection\Controller;
 
 use Attribute;
 

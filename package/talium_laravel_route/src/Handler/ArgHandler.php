@@ -1,14 +1,14 @@
 <?php
 
-namespace TaliumAttributes\Collection\Handler;
+namespace TaliumAttributes\Handler;
 
 use ReflectionMethod;
 use ReflectionParameter;
-use TaliumAttributes\helper\FileHelpers as HelperFileHelpers;
+use TaliumAttributes\helper\FileHelpers;
 
 class Handler
 {
-    use HelperFileHelpers;
+    use FileHelpers;
 
     private $results = [];
 

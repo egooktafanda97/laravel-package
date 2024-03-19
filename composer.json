@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.12",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -25,8 +26,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "TaliumAttributes\\": "package/talium_laravel_route/src/",
-            "TaliumAttributes\\Collection\\": "package/talium_laravel_route/src/attributes/"
+            "TaliumAttributes\\": "package/talium_laravel_route/src/"
         }
     },
     "autoload-dev": {
@@ -51,7 +51,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [],
+            "providers": [
+                "TaliumAttributes\\Provider\\TaliumAttributesServiceProvider"
+            ]
         }
     },
     "config": {

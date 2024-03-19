@@ -11,4 +11,9 @@ trait FileHelpers
     {
         return app_path($app);
     }
+
+    public function base_path($path)
+    {
+        return base_path($path);
+    }
 }

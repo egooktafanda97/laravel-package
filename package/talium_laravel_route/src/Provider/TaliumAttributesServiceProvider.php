@@ -3,17 +3,19 @@
 namespace TaliumAttributes\Provider;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use TaliumAttributes\Collection\Handler\RouterHandler;
+use TaliumAttributes\Handler\RouterHandler as HandlerRouterHandler;
 
 class TaliumAttributesServiceProvider extends ServiceProvider
 {
     /**
-     * Register services.
+     * Register services.s
      *
      * @return void
      */
     public function register()
     {
+
+        // $this->mergeConfigFrom(base_path("config/config.php"), __DIR__ . './../config/talium_config.php');
     }
 
     /**
@@ -23,8 +25,11 @@ class TaliumAttributesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->routes(function () {
-            RouterHandler::route();
-        });
+        HandlerRouterHandler::route();
+        // if ($this->app->runningInConsole()) {
+        //     $this->publishes([
+        //         __DIR__ . '/../config/config.php' => config_path('route-controllers.php'),
+        //     ], 'config');
+        // }
     }
 }

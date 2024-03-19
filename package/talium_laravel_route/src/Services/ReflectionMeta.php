@@ -1,19 +1,19 @@
 <?php
 
-namespace TaliumAttributes\Collection\Services;
+namespace TaliumAttributes\Services;
 
 use ReflectionClass;
 use ReflectionMethod;
-use TaliumAttributes\Collection\Controllers\Controllers;
-use TaliumAttributes\Collection\Routes\Delete;
-use TaliumAttributes\Collection\Routes\Get;
-use TaliumAttributes\Collection\Routes\Group;
-use TaliumAttributes\Collection\Routes\Middleware;
-use TaliumAttributes\Collection\Routes\Name;
-use TaliumAttributes\Collection\Routes\Post;
-use TaliumAttributes\Collection\Routes\Prefix;
-use TaliumAttributes\Collection\Routes\Put;
-use TaliumAttributes\Collection\Controllers\RestController;
+use TaliumAttributes\Collection\Controller\Controllers;
+use TaliumAttributes\Collection\Controller\RestController;
+use TaliumAttributes\Collection\Rutes\Delete;
+use TaliumAttributes\Collection\Rutes\Get;
+use TaliumAttributes\Collection\Rutes\Group;
+use TaliumAttributes\Collection\Rutes\Middleware;
+use TaliumAttributes\Collection\Rutes\Name;
+use TaliumAttributes\Collection\Rutes\Post;
+use TaliumAttributes\Collection\Rutes\Prefix;
+use TaliumAttributes\Collection\Rutes\Put;
 use TaliumAttributes\helper\FileHelpers;
 
 class ReflectionMeta
@@ -185,7 +185,8 @@ class ReflectionMeta
                         $class = new ReflectionClass($namespaces);
                         $className = $class->getName();
                         $ClassControll = $class->getAttributes(Controllers::class);
-                        if (!empty($ClassControll)) {
+
+                        if (!empty($ClassControll) || count($ClassControll) > 0) {
                             $controllers = $ClassControll[0]->newInstance()->controller;
                             $data = [
                                 "controller" => $controllers ?? 'web',

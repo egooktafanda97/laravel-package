@@ -1,6 +1,6 @@
 <?php
 
-namespace TaliumAttributes\Collection\Routes;
+namespace TaliumAttributes\Collection\Rutes;
 
 use Attribute;
 
