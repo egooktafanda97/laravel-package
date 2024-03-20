@@ -3,6 +3,7 @@
 namespace TaliumAttributes\Provider;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use TaliumAttributes\console\PushControllerList;
 use TaliumAttributes\Handler\RouterHandler as HandlerRouterHandler;
 
 class TaliumAttributesServiceProvider extends ServiceProvider
@@ -26,6 +27,13 @@ class TaliumAttributesServiceProvider extends ServiceProvider
     public function boot()
     {
         HandlerRouterHandler::route();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                PushControllerList::class,
+            ]);
+        }
+
         // if ($this->app->runningInConsole()) {
         //     $this->publishes([
         //         __DIR__ . '/../config/config.php' => config_path('route-controllers.php'),

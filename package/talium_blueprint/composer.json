@@ -1,0 +1,51 @@
+{
+    "name": "talium_blueprint/laravel",
+    "description": "otomatis crud",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "role": "Developer",
+        "name": "ego oktafanda",
+        "email": "egooktafanda1097@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "TaliumBlueprint\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TaliumBlueprint\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0||^10.0||^11.0",
+        "talium_attribute/laravel": "dev-main",
+        "wendelladriel/laravel-validated-dto": "^3.5",
+        "yaza/laravel-repository-service": "^3.0||^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5||^10.0||^11.0",
+        "orchestra/testbench": "^6.20||^7.0||^8.0",
+        "illuminate/container": "^9.0||^10.0||^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TaliumBlueprint\\Providers\\BlueprintServiceProvider"
+            ]
+        }
+    },
+    "repositories": [{
+        "type": "path",
+        "url": "./../talium_laravel_route/"
+    }],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    }
+}

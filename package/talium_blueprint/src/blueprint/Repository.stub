@@ -1,0 +1,14 @@
+<?php
+
+namespace {{ RepositoryNamespace }};
+
+use LaravelEasyRepository\Implementations\Eloquent;
+{{ ModelNamespace }}
+
+class {{ ClassRepository }}Implement extends Eloquent implements {{ ClassRepository }}{
+
+    public function __construct(protected $model)
+    {
+        $this->model = $model;
+    }
+}

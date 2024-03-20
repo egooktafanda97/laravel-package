@@ -170,7 +170,7 @@ class RouterHandler
 
     public static function findControllers()
     {
-        $data = ReflectionMeta::findPhpFilesWithClass(self::app_path());
+        $data = ReflectionMeta::findPhpFilesWithClass(app_path());
 
         $namespaces = [];
         foreach ($data as $classData) {
@@ -191,7 +191,7 @@ class RouterHandler
         }
 
         $result = "<?php\n\nreturn [\n    " . $namespaces . "];\n";
-        $configPath = self::app_path()('RouterAttributeNameSpace.php');
+        $configPath = config_path('ControllerAttributeList.php');
         file_put_contents($configPath, $result);
     }
 }

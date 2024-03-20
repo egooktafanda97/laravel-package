@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ ControllerNamespace }};
+
+use App\Http\Controllers\Controller;
+use TaliumAttributes\Collection\Routes\Get;
+use TaliumAttributes\Collection\Routes\Group;
+use TaliumAttributes\Collection\Routes\Name;
+
+#[{{ Controller() }}]
+#[Group(["prefix" => "{{ prefix }}"])]
+#[Name("{{ name }}")]
+class {{ ControllerName }}  extends Controller
+{
+   {{ ControllerMethod }}
+}

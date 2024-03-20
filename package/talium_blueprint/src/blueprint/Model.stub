@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ ModelNamespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+use TaliumAbstract\Attributes\Table;
+use TaliumAbstract\Trait\InjectModel;
+
+#[Table("{{ table }}")]
+#[PrimaryKey("id")]
+class Person extends Model
+{
+    use InjectModel;
+    {{ fillable }}
+
+    {{ method }}
+}

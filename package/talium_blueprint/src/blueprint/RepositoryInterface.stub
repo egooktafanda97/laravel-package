@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ RepositoryNamespace }};
+
+use LaravelEasyRepository\Repository;
+
+interface {{ ClassRepository }} extends Repository
+{
+    {{ RepositoryMethod }}
+}

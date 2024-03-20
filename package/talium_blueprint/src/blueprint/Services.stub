@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ NamespaceServices }};
+
+use LaravelEasyRepository\Service;
+use {{ RepositoryImplServicesUse }};
+
+class {{ ServicesClass }}Implement extends Service implements {{ RepositoryImplServices }}{
+
+    public function __construct(
+        protected {{ ClassRepository }} $repository
+    ){}
+
+    {{ ServicesClassMethod }}
+}

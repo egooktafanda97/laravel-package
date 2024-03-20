@@ -1,0 +1,14 @@
+<?php
+namespace {{ DtoNamespace }};
+
+use WendellAdriel\ValidatedDTO\Attributes\Rules;
+use WendellAdriel\ValidatedDTO\Concerns\EmptyRules;
+
+class {{ ClassDto }} extends ValidatedDTO
+{
+    use EmptyRules;
+
+    {{ DtoAttribute }}
+
+    {{ DtoMethod }}
+}

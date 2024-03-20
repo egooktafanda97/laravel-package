@@ -1,0 +1,9 @@
+<?php
+
+namespace {{ ServiceInterfaceNamespace }};
+
+use LaravelEasyRepository\BaseService;
+
+interface {{ ServiceInterfaceClass }} extends BaseService{
+    {{ ServiceMethod }}
+}
