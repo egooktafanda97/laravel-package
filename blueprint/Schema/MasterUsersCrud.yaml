@@ -1,0 +1,85 @@
+<<ClassEndpoin<Users>>>:
+  auto-crud: true
+
+  <<Schema>>:
+    name:
+      string:
+      form-input: true
+      rules: ['required|string|max:255']
+      dto:
+      - show
+      - create
+      form-request:
+        error-message: "nama wajib di isi"
+
+    email:
+      string:
+      form-input: true
+      rules: ['required|string|max:255']
+      dto:
+      - show
+      - create
+      form-request:
+
+    email_verified_at:
+      string:
+      form-input: false
+      rules: ['nullable|string|email|unique:users,email']
+      dto:
+      - show
+
+    password:
+      string:
+      form-input: true
+      rules: ['required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
+      dto:
+      - create
+      form-request:
+  #migration << comingsoon >>
+
+  <<Model>>:
+    class: <<ClassEndpoin>>
+    exteds: #<< exteds costum >>
+
+    talium-model: true # hilangkan atau kosongkan jika menggunkan default
+
+    filable:
+    #propertis costum
+    propertis:
+    #trait pada class
+    trait:
+    - HasFactory: Illuminate\Notifications\Notifiable
+    - Notifiable: Laravel\Sanctum\HasApiTokens;
+
+    #isi sintax jika ada tambahan method
+    method:
+
+  <<Controller>>:
+    class: <<ClassEndpoin>>
+    talium-controller: true # hilangkan atau kosongkan jika menggunkan default
+    propertis:
+    trait:
+    method:
+
+  <<Repository>>:
+    class: <<ClassEndpoin>>
+    Model: <<ClassEndpoin>>
+
+  <<Dto>>:
+    extended: true #jika true akan meruntuhkan semua configurasi constum dan dapat di set manual di class
+    class: <<ClassEndpoin>>
+    #propertis costum
+    propertis:
+
+  <<Services>>: <<extended>> #ini akan mengikuti setting dari default nya
+
+  <<view>>:
+    create: # if null then generate
+    show: # if null then generate
+    update: # if null then generate
+
+
+
+
+
+

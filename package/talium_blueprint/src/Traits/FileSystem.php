@@ -8,4 +8,9 @@ trait FileSystem
     {
         return __DIR__ . $path;
     }
+
+    public function blueprint_config($conf = null)
+    {
+        return config("blueprint" . $conf);
+    }
 }

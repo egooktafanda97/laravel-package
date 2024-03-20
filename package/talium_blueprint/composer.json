@@ -21,6 +21,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0||^10.0||^11.0",
+        "symfony/yaml": "^6.4",
         "talium_attribute/laravel": "dev-main",
         "wendelladriel/laravel-validated-dto": "^3.5",
         "yaza/laravel-repository-service": "^3.0||^4.0"

@@ -1,0 +1,64 @@
+@Blueprint
+<<ref>{
+    <<anotation>{
+        - @decorator<>()
+        - @attribute<>()
+        - @funtion<>()
+        }
+    >
+    <<character>{
+        - # : props | attribute | variable
+        - <<>> : key | class | merhod | function
+        - <<>> -> []   : use | include
+    }>
+    
+}>
+
+import {Model} from "Illuminate/Database/Eloquent/Model";
+import {Notifiable} from "Illuminate/Notifications/Notifiable"
+import {HasApiTokens} from "Laravel/Sanctum/HasApiTokens";
+
+<<Us>>{
+
+    @decorator("field")
+    <<nama>>
+    {
+        #rules:['required|string|max:255']
+        #dto:[]
+        #form-input:
+    }
+
+    @decorator("field")
+    <<alamat>>
+    {
+        #rules:['required|string|max:255']
+        #dto:['show','create','update']
+        #form-input:
+    }
+
+    @decorator("field")
+    <<jenis_kelamin_id>>
+    {
+        #rules:['enum:1,2']
+        #dto:['show','create','update']
+        #form-input:
+
+        @funtion<public,Model>("Us")
+        <<jeniskelamin<JenisKelamin>>>
+        {
+            this->belongsTo(JenisKelamin::class,'jenis_kelamin_id','id');
+        }
+    }
+
+
+    @attribute("class","model")
+    <<Us>> exteds Model
+    {
+        [HasApiTokens]
+        [Notifiable]
+
+        @attribute<protected>()
+        fillable: this->attribute("tag","field")
+    }
+
+}
