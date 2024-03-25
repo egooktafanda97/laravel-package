@@ -4,16 +4,14 @@ namespace {{ ModelNamespace }};
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+{{ use }}
 
-use TaliumAbstract\Attributes\Table;
-use TaliumAbstract\Trait\InjectModel;
-
-#[Table("{{ table }}")]
-#[PrimaryKey("id")]
-class Person extends Model
+{{attribute-class}}
+class {{class}} extends {{extends}}
 {
-    use InjectModel;
-    {{ fillable }}
-
+    {{trait}}
+    {{table}}
+    protected $fillable = {{ fillable }};
     {{ method }}
+    {{ relationship }}
 }

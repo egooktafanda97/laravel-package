@@ -1,0 +1,66 @@
+<<Class<Person>>>:
+  auto-crud: true
+
+  <<function-helper>>:
+    beforeAction:
+      store:
+      - userCreateAppendRequestGetId: ['Users', 'UserDto', 'UserServices']
+
+  <<Schema>>:
+    name:
+      type: string
+      form-input: true
+      rules: ['required|string|max:255']
+      dto:
+        show:
+        create:
+      validation_error_message: "nama wajib di isi"
+
+    user_id:
+      type: int|null
+      form-input: false
+      relationship: [belongsTo, User, user]
+      rules: ['required|integer|exists:users,id']
+      dto:
+        show:
+          permission: ['admin']
+        create:
+
+
+  #migration << comingsoon >>
+
+  <<Model>>:
+    class: <<Class>>
+
+    exteds: #<< exteds costum >>
+    talium-model: true # hilangkan atau kosongkan jika menggunkan default
+    filable: #null otomatis exteds ke skema
+    #propertis costum
+    propertis:
+
+    #isi sintax jika ada tambahan method
+    method:
+
+  <<Controller>>:
+    class: <<Class>>
+    talium-controller: true # hilangkan atau kosongkan jika menggunkan default
+    propertis:
+    trait:
+    method:
+
+  <<Dto>>:
+    extended: true #jika true akan meruntuhkan semua configurasi constum dan dapat di set manual di class
+    class: <<Class>>
+    #propertis costum
+    propertis:
+
+  <<view>>:
+    create: # if null then generate
+    show: # if null then generate
+    update: # if null then generate
+
+
+
+
+
+

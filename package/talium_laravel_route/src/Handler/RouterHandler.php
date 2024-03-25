@@ -11,6 +11,7 @@ use TaliumAttributes\Services\ReflectionMeta;
 class RouterHandler
 {
     use HelperFileHelpers;
+
     public function __construct()
     {
     }
@@ -24,6 +25,7 @@ class RouterHandler
         $appPath = self::app_path();
         $files = File::allFiles($appPath);
         $controllerFiles = [];
+
 
         foreach ($files as $file) {
             $filePath = $file->getPathname();
@@ -135,7 +137,7 @@ class RouterHandler
                 if (!empty($routes['attribute'])) {
                     $arr = self::build((ReflectionMeta::HirarchyAttributes($item)));
                     foreach ($arr as $router) {
-                        $routes_list[] = array_merge($router, ["guard" => $key ?? 'web']);
+                        $routes_list[] = array_merge($router, ["http-contex" => $key ?? 'web']);
                     }
                 }
             }
@@ -144,7 +146,8 @@ class RouterHandler
         foreach ($routes_list as $router) {
 
             try {
-                Route::group($router['guard'] === "api" ? ["api"] : [], function () use ($router) {
+
+                Route::group($router['http-contex'] === "api" ? ["middleware" => "api", "prefix" => "api"] : ["middleware" => "web"], function () use ($router) {
                     Route::group($router['attribute_group'] ?? [], function () use ($router) {
                         if (is_array($router['url'])) {
                             foreach ($router['url'] as $url) {

@@ -2,6 +2,7 @@
 
 return [
     "blueprint" => [
+        "blueprint_model" => "talium", // [talium, default]
         "blueprint_path" => base_path("blueprint/Schema/"),
         "blueprint_format" => "yaml", // [yaml, json]
         "design-pattern" => "repository-pattern", //[repository-pattern],[simple-pattern],[mvc-pattern],[react-pattern]
@@ -15,16 +16,22 @@ return [
              */
             "controller" => [
                 "path" => app_path("Http/Controllers"), // null | false == default laravel
+                "namespace" => "App\Http\Controllers", // null | false == default laravel
                 "desain" => "talium" // [null=blank],[talium=desain talium]
             ],
             "model" => [
                 "path" => app_path("Models"), // null | false == default laravel
+                "namespace" => "App\Models", // null | false == default laravel
                 "desain" => "talium" // [null=blank],[talium=desain talium]
             ], // required
             "form-request" => app_path("Http/Requests"), // false == extended
             "repository" => app_path("Repositories"), // false == extended
             "services" => app_path("Services"), // false == extended
-            "dto" => app_path("DTOs"), // false == extended
+            "dto" => [
+                "path" => app_path("DTOs"), // null | false == default laravel
+                "namespace" => "App\DTOs", // null | false == default laravel
+                "desain" => "talium" // [null=blank],[talium=desain talium]
+            ], // false == extended
             /**
              * </ end-point >
              */

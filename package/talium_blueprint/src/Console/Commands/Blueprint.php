@@ -3,6 +3,7 @@
 namespace TaliumBlueprint\Console\Commands;
 
 use Illuminate\Console\Command;
+use TaliumBlueprint\Handler\BladeComponentHandler;
 
 class Blueprint extends Command
 {
@@ -12,6 +13,12 @@ class Blueprint extends Command
 
     public function handle()
     {
-        $this->info('blueprint:crete command called');
+        try {
+            $blueprint = new BladeComponentHandler($this->argument('name') . ".yaml");
+            $blueprint->main()->dump()->publish();
+            $this->info('blueprint:crete command ' . $this->argument('name') . ' is running');
+        } catch (\Throwable $th) {
+            throw new \Exception($th->getMessage());
+        }
     }
 }

@@ -1,14 +1,26 @@
 <?php
-namespace {{ DtoNamespace }};
-
+namespace {{ namespace }};
+use TaliumBlueprint\TraitHelper\InjectDto;
 use WendellAdriel\ValidatedDTO\Attributes\Rules;
 use WendellAdriel\ValidatedDTO\Concerns\EmptyRules;
+use WendellAdriel\ValidatedDTO\ValidatedDTO;
 
-class {{ ClassDto }} extends ValidatedDTO
+class {{ class }} extends ValidatedDTO
 {
+    use InjectDto;
     use EmptyRules;
 
-    {{ DtoAttribute }}
+    {{ DtoProperties }}
 
     {{ DtoMethod }}
+
+     protected function defaults(): array
+     {
+        return [];
+     }
+
+     protected function casts(): array
+     {
+            return [];
+     }
 }

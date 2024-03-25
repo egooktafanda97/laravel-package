@@ -1,77 +1,88 @@
-<<ClassEndpoin<Users>>>:
+<<Class<Person>>>:
   auto-crud: true
 
   <<Schema>>:
     name:
-      string:
+      type: string
       form-input: true
-      rules: ['required|string|max:255']
+      rules: [ 'required|string|max:255' ]
       dto:
-      - show
-      - create
-      form-request:
-        error-message: "nama wajib di isi"
+        show:
+        create:
+      validation_error_message: "nama wajib di isi"
+
+    user_id:
+      type: int
+      form-input: false
+      relationship: [ belongsTo,User,user ]
+      rules: [ 'required|integer|exists:roles,id' ]
+      dto:
+        show:
+          permission: [ 'admin' ]
+        create:
+          default: auth()->user()->id
+
+    jenis_kelamin_id:
+      type: int
+      form-input: true
+      relationship: belongsTo
+      rules: [ 'required|integer|exists:jenis_kelamins,id' ]
+      dto:
+        show:
+        create:
+      validation_error_message: "jenis kelamin wajib di isi"
 
     email:
-      string:
+      type: string
       form-input: true
-      rules: ['required|string|max:255']
+      rules: [ 'required|string|max:255' ]
       dto:
-      - show
-      - create
+        show:
+          permission: [ 'admin' ]
+        create:
       form-request:
 
     email_verified_at:
-      string:
+      type: string
       form-input: false
-      rules: ['nullable|string|email|unique:users,email']
+      rules: [ 'nullable|string|email,email' ]
       dto:
-      - show
+        show:
 
     password:
-      string:
+      type: string
       form-input: true
-      rules: ['required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/']
+      rules: [ 'required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/' ]
       dto:
-      - create
-      form-request:
+        create:
+
+
   #migration << comingsoon >>
 
   <<Model>>:
-    class: <<ClassEndpoin>>
+    class: <<Class>>
+    table: "person"
     exteds: #<< exteds costum >>
-
     talium-model: true # hilangkan atau kosongkan jika menggunkan default
-
-    filable:
+    filable: #null otomatis exteds ke skema
     #propertis costum
     propertis:
-    #trait pada class
-    trait:
-    - HasFactory: Illuminate\Notifications\Notifiable
-    - Notifiable: Laravel\Sanctum\HasApiTokens;
 
     #isi sintax jika ada tambahan method
     method:
 
   <<Controller>>:
-    class: <<ClassEndpoin>>
+    class: <<Class>>
     talium-controller: true # hilangkan atau kosongkan jika menggunkan default
     propertis:
     trait:
     method:
 
-  <<Repository>>:
-    class: <<ClassEndpoin>>
-    Model: <<ClassEndpoin>>
-
   <<Dto>>:
     extended: true #jika true akan meruntuhkan semua configurasi constum dan dapat di set manual di class
-    class: <<ClassEndpoin>>
+    class: <<Class>>
     #propertis costum
     propertis:
-
-  <<Services>>: <<extended>> #ini akan mengikuti setting dari default nya
 
   <<view>>:
     create: # if null then generate

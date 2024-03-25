@@ -19,10 +19,11 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1|^8.2",
         "illuminate/support": "^9.0||^10.0||^11.0",
         "symfony/yaml": "^6.4",
         "talium_attribute/laravel": "dev-main",
+        "touhidurabir/laravel-stub-generator": "^1.0",
         "wendelladriel/laravel-validated-dto": "^3.5",
         "yaza/laravel-repository-service": "^3.0||^4.0"
     },

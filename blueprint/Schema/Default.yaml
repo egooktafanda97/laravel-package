@@ -1,0 +1,25 @@
+
+<<Model>>:
+  class: <<Class>>
+  table: "person"
+  exteds: #<< exteds costum >>
+  talium-model: true # hilangkan atau kosongkan jika menggunkan default
+  filable: #null otomatis exteds ke skema
+  #propertis costum
+  propertis:
+
+  #isi sintax jika ada tambahan method
+  method:
+
+<<Controller>>:
+  class: <<Class>>
+  talium-controller: true # hilangkan atau kosongkan jika menggunkan default
+  propertis:
+  trait:
+  method:
+
+<<Dto>>:
+  extended: true #jika true akan meruntuhkan semua configurasi constum dan dapat di set manual di class
+  class: <<Class>>
+  #propertis costum
+  propertis:

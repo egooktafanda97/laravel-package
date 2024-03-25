@@ -20,6 +20,6 @@ class TaliumBlueprintController  extends Controller
     public function index()
     {
         $blueprint = new BladeComponentHandler("MasterUsersCrud.yaml");
-        dd($blueprint->main());
+        dd($blueprint->main()->dump()->publish());
     }
 }
